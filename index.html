@@ -84,7 +84,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 40px;
       align-items: center;
-      padding: 100px 40px;
+      padding: 60px 40px; /* moved content upwards */
       background: rgba(17, 24, 39, 0.85);
       border-radius: 24px;
       color: white;
@@ -92,6 +92,7 @@
       backdrop-filter: blur(12px);
       position: relative;
       overflow: hidden;
+      margin-top: 40px; /* slight margin from header */
     }
     .hero-text h1 {
       font-size: 48px; font-weight: 700; margin-bottom: 20px; color: #fff;
@@ -170,6 +171,12 @@
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       z-index: -1;
+    }
+    .form-card iframe {
+      width: 100%;
+      height: 600px; /* increased height */
+      border: none;
+      border-radius: 8px;
     }
 
     /* Features Section */
