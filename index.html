@@ -131,7 +131,19 @@
       text-decoration:none;
     }
     .cta:hover{ transform: translateY(-2px); box-shadow: 0 10px 34px rgba(124,58,237,0.36); }
-    .cta span{ display:inline-block; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background:linear-gradient(90deg,#fff,#eaeaea); animation: shimmer 3s linear infinite; background-size:200% 100% }
+    .cta span {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(90deg, #fff, #f9fafb, #e5e7eb);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+
+  /* fallback text color */
+  color: #fff;
+}
+
     @keyframes shimmer{ 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
     /* Form card */
