@@ -6,262 +6,185 @@
   <title>Autobotic — Smarter Daily Life</title>
   <meta name="description" content="Autobotic — AI assistant for daily news, routes, and stock alerts.">
   <style>
-    :root {
-      --accent: #6366f1;
-      --text-dark: #111;
-      --text-light: #bbb;
-      --max-width: 1200px;
+    :root{
+      --max-width:1200px;
+      --hero-bg: rgba(17,24,39,0.85);
+      --card-bg: #111827;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(124,58,237,0.3), transparent 70%),
-    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.3), transparent 70%),
-    radial-gradient(circle at 50% 50%, rgba(236,72,153,0.25), transparent 70%),
-    #0a0a0f; /* base background */
-  background-attachment: fixed;
-  background-size: cover;
-  color: var(--text-dark);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-
-
-    /* Optimized gradient overlay */
-    body::before {
-      content: "";
-      position: absolute;
-      top: -40%;
-      left: -40%;
-      width: 160%;
-      height: 160%;
-      background: conic-gradient(
-        from 0deg,
-        #7c3aed,
-        #06b6d4,
-        #f59e0b,
-        #ec4899,
-        #10b981,
-        #7c3aed
-      );
-      animation: rotate 30s linear infinite;
-      filter: blur(120px); /* reduced for performance */
-      opacity: 0.4;
-      z-index: -3;
-    }
-    body::after {
-      content: "";
-      position: absolute;
-      bottom: -20%;
-      right: -20%;
-      width: 120%;
-      height: 120%;
-      background: radial-gradient(circle at center, rgba(236,72,153,0.25), transparent 75%);
-      filter: blur(100px); /* reduced */
-      z-index: -3;
-      opacity: 0.5;
-    }
-
-    @keyframes rotate {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
-
-    /* Header */
-    header {
-      position: sticky; top: 0; background: rgba(17,17,17,0.6);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      z-index: 100;
-    }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
-    .logo { font-weight: 600; font-size: 20px; color: white; }
-    nav ul { display: flex; gap: 24px; list-style: none; }
-    nav a { font-size: 15px; color: #e5e7eb; transition: color .2s; }
-    nav a:hover { color: white; }
-
-    /* Hero Section */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 60px 40px; /* moved content upwards */
-      background: rgba(17, 24, 39, 0.85);
-      border-radius: 24px;
-      color: white;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-      margin-top: 40px;
-    }
-    .hero-text h1 {
-      font-size: 48px; font-weight: 700; margin-bottom: 20px; color: #fff;
-    }
-    .hero-text p {
-      color: #d1d5db; font-size: 18px; margin-bottom: 24px;
-      max-width: 500px;
-    }
-    .usecases { list-style: none; margin-bottom: 32px; }
-    .usecases li {
-      margin-bottom: 12px;
-      font-size: 16px;
-      color: #e5e7eb;
-    }
-    .usecases li::before {
-      content: "✓";
-      color: var(--accent);
-      margin-right: 8px;
-    }
-
-    /* CTA Button */
-    .cta {
-      background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899);
-      background-size: 200% 200%;
+    html,body { height: 100%; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: #05060a; /* solid base so gradients sit on top */
       color: #fff;
-      padding: 14px 28px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all .3s ease;
-      display: inline-block;
-      box-shadow: 0 4px 18px rgba(124,58,237,0.35);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta:hover {
-      background-position: right center;
-      box-shadow: 0 6px 24px rgba(124,58,237,0.45);
-      transform: translateY(-2px);
-    }
-    .cta span {
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(90deg, #fff, #f9fafb, #e5e7eb);
-      background-size: 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
+      line-height:1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Form Card */
-    .form-card {
-      position: relative;
-      background: #111827;
-      padding: 24px;
-      border-radius: 16px;
-      text-align: center;
-      color: #f9fafb;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
-      overflow: hidden;
-    }
-    .form-card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4, #f59e0b, #ec4899);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      z-index: -1;
-    }
-    .form-card iframe {
-      width: 100%;
-      height: 800px; /* larger but lazy-loaded */
-      border: none;
-      border-radius: 8px;
+    /* ---------- Fixed background layer (robust + non-scaling) ---------- */
+    .bg-fixed{
+      position: fixed;
+      inset: 0;                 /* full viewport */
+      pointer-events: none;     /* let clicks pass through */
+      z-index: -2;              /* behind all content */
+      display: block;
+      contain: paint;           /* helps rendering isolation */
+      /* layered radial gradients for soft luxury glow */
+      background-image:
+        radial-gradient(400px 400px at 14% 28%, rgba(124,58,237,0.28), transparent 45%),
+        radial-gradient(480px 480px at 86% 72%, rgba(6,182,212,0.22), transparent 45%),
+        radial-gradient(320px 320px at 52% 48%, rgba(236,72,153,0.20), transparent 45%);
+      background-repeat: no-repeat;
+      background-position: 14% 28%, 86% 72%, 52% 48%;
+      /* fixed so background doesn't move/scale with content/scroll */
+      background-attachment: fixed;
+      background-size: auto;
+      filter: blur(36px);  /* small, cheap blur for softness (not huge) */
+      opacity: 0.9;
     }
 
-    /* Features */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 40px;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .features div {
-      background: rgba(17, 24, 39, 0.85);
-      border-radius: 16px;
-      padding: 28px 18px;
-      box-shadow: 0 4px 18px rgba(124,58,237,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .features div:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(124,58,237,0.35);
-    }
-    .features h3 { font-size: 20px; margin-bottom: 10px; color: white; }
-    .features p { color: #9ca3af; font-size: 15px; }
-
-    /* Footer */
-    footer {
-      padding: 30px 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      font-size: 14px;
-      color: #9ca3af;
-    }
-
-    /* Optimized Floating Orbs */
-    .orb {
+    /* Orbs: fixed pixel sizes so they DO NOT scale with the page */
+    .bg-fixed .orb{
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px); /* smaller blur */
-      opacity: 0.3;
-      animation: float 18s ease-in-out infinite;
-      z-index: -2;
-      will-change: transform; /* GPU hint */
+      pointer-events: none;
+      filter: blur(48px);
+      opacity: 0.34;
+      will-change: transform;
+      transform: translate3d(0,0,0);
+      transition: transform 220ms linear;
     }
-    .orb.one {
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle at center, #7c3aed, transparent 70%);
-      top: 15%;
-      left: -10%;
-      animation-delay: 0s;
+    /* orb positions + fixed px dimensions (won't stretch) */
+    .orb.one{
+      width: 320px;
+      height: 320px;
+      left: 64px;
+      top: 96px;
+      background: radial-gradient(circle at 35% 30%, rgba(124,58,237,0.95), rgba(124,58,237,0.05) 55%);
     }
-    .orb.two {
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle at center, #06b6d4, transparent 70%);
-      bottom: -15%;
-      right: -10%;
-      animation-delay: 5s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-30px) translateX(20px); }
+    .orb.two{
+      width: 420px;
+      height: 420px;
+      right: 56px;
+      bottom: 88px;
+      background: radial-gradient(circle at 50% 40%, rgba(6,182,212,0.92), rgba(6,182,212,0.05) 55%);
     }
 
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      body::before, body::after, .orb {
-        animation: none !important;
-        filter: blur(60px);
-      }
+    /* Hide/scale orbs on very small screens so they never cause scrollbars */
+    @media (max-width: 640px){
+      .orb.one{ width: 220px; height: 220px; left: 20px; top: 50px; filter: blur(40px); }
+      .orb.two{ width: 260px; height: 260px; right: 10px; bottom: 40px; filter: blur(40px); }
+      .bg-fixed{ filter: blur(30px); }
     }
 
-    @media (max-width: 800px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-text h1 { font-size: 36px; }
+    /* ---------- Page layout ---------- */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+
+    header{
+      position: sticky; top:0;
+      z-index: 10;
+      background: rgba(7,9,13,0.5);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .logo{ font-weight:700; font-size:20px; color:#fff; }
+    nav ul{ display:flex; gap:20px; list-style:none }
+    nav a{ color:#e6e7eb; text-decoration:none; font-size:15px }
+    nav a:hover{ color:#fff; }
+
+    main{ min-height: calc(100vh - 120px); } /* keeps hero visible */
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:36px;
+      align-items:center;
+      padding:54px 40px;     /* moved up a bit */
+      margin: 40px 0;
+      background: var(--hero-bg);
+      border-radius:18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.34);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text h1{ font-size:44px; line-height:1.05; margin-bottom:12px; color:#fff; }
+    .hero-text p{ color:#d1d5db; max-width:520px; margin-bottom:18px }
+    .usecases{ list-style:none; color:#e6e7eb; margin-bottom:20px }
+    .usecases li{ margin-bottom:10px }
+    .usecases li::before{ content:"✓"; color:#7c3aed; margin-right:8px }
+
+    /* CTA */
+    .cta{
+      display:inline-block;
+      padding:12px 26px;
+      border-radius:999px;
+      background: linear-gradient(135deg,#7c3aed,#06b6d4,#ec4899);
+      background-size:200% 200%;
+      color:#fff;
+      font-weight:600;
+      box-shadow: 0 6px 22px rgba(124,58,237,0.28);
+      transition: transform .22s ease, box-shadow .22s ease;
+      text-decoration:none;
+    }
+    .cta:hover{ transform: translateY(-2px); box-shadow: 0 10px 34px rgba(124,58,237,0.36); }
+    .cta span{ display:inline-block; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background:linear-gradient(90deg,#fff,#eaeaea); animation: shimmer 3s linear infinite; background-size:200% 100% }
+    @keyframes shimmer{ 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+    /* Form card */
+    .form-card{
+      background: var(--card-bg);
+      border-radius:12px;
+      padding:20px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.32);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      border-radius:inherit;
+      padding:2px;
+      background: linear-gradient(135deg,#7c3aed,#06b6d4,#f59e0b,#ec4899);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      z-index:-1;
+    }
+    .form-card iframe{
+      width:100%;
+      height:600px;
+      border:0;
+      border-radius:8px;
+      display:block;
+      resize:none; /* not user-resizable */
+    }
+
+    /* Features & footer */
+    .features{ display:grid; gap:24px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); padding:40px 0 }
+    .features .card{ background: rgba(17,24,39,0.85); padding:20px; border-radius:12px; color:#d1d5db }
+    footer{ padding:28px 0; color:#9ca3af; text-align:center; }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce){
+      .bg-fixed, .orb{ animation:none !important; transition:none !important; }
+    }
+    @media (max-width: 880px){
+      .hero{ grid-template-columns: 1fr; padding:32px; }
+      .hero-text h1{ font-size:32px }
+      .form-card iframe{ height:520px }
     }
   </style>
 </head>
 <body>
+  <!-- fixed background layer (non-scaling, robust) -->
+  <div class="bg-fixed" aria-hidden="true">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+  </div>
+
   <header>
     <div class="container nav">
       <div class="logo">Autobotic</div>
@@ -276,40 +199,39 @@
   </header>
 
   <main class="container">
-    <!-- Hero -->
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-text">
-        <h1>Smarter Daily Life, Powered by AI.</h1>
+        <h1 id="hero-title">Smarter Daily Life, Powered by AI.</h1>
         <p>Autobotic gives you the right info at the right time — so you can focus on what matters.</p>
         <ul class="usecases">
           <li>Daily personalized news alerts</li>
           <li>Optimized routes for your work commute</li>
           <li>Instant stock price notifications</li>
         </ul>
-        <a href="#signup" class="cta"><span>Join Early Access</span></a>
+        <a class="cta" href="#signup"><span>Join Early Access</span></a>
       </div>
-      <div class="form-card" id="signup">
-        <h2>Sign up Now</h2>
+
+      <div class="form-card" id="signup" aria-labelledby="signup-title">
+        <h2 id="signup-title">Sign up Now</h2>
         <p>Get early access to Autobotic.</p>
-        <iframe src="form.html" 
-          style="width:100%; max-width:450px; height:600px; border:none; border-radius:12px; 
-                 box-shadow:0 6px 20px rgba(0,0,0,0.1);"
-          title="Subscribe Form">
-  </iframe>
+        <!-- Lazy-load the form; fixed height so customers can't resize it -->
+        <iframe src="https://your-n8n-server/webhook/form/xyz"
+                title="Autobotic Signup Form"
+                loading="lazy"></iframe>
       </div>
     </section>
 
-    <!-- Features -->
-    <section id="features" class="features">
-      <div>
+    <section id="features" class="features" aria-labelledby="features-title">
+      <h2 id="features-title" style="display:none">Features</h2>
+      <div class="card">
         <h3>Personalized Experience</h3>
         <p>Tailored alerts and suggestions designed around your lifestyle.</p>
       </div>
-      <div>
+      <div class="card">
         <h3>Reliable & Secure</h3>
         <p>GDPR-compliant privacy with encrypted data handling.</p>
       </div>
-      <div>
+      <div class="card">
         <h3>Always Up-to-Date</h3>
         <p>Realtime updates on news, travel, and financial markets.</p>
       </div>
@@ -320,22 +242,40 @@
     © 2025 Autobotic, Inc. All rights reserved.
   </footer>
 
-  <!-- Lighter floating orbs -->
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-
-  <!-- Orb interactivity -->
+  <!-- light JS for subtle orb mouse-follow; very small, uses rAF to keep it smooth -->
   <script>
-    document.addEventListener("mousemove", (e) => {
-      const orbs = document.querySelectorAll(".orb");
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 30;
-      const y = (e.clientY / innerHeight - 0.5) * 30;
-      orbs.forEach((orb, i) => {
-        const speed = (i + 1) * 0.25;
-        orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-      });
-    });
+    (function(){
+      const orbs = document.querySelectorAll('.bg-fixed .orb');
+      if(!orbs.length) return;
+
+      // small sensitivity values so movement is subtle and cheap
+      const strengths = [18, 28]; // px multiplier per orb
+      let mouseX = 0, mouseY = 0;
+      let rafId = null;
+
+      function onMouseMove(e){
+        mouseX = (e.clientX / window.innerWidth) - 0.5;
+        mouseY = (e.clientY / window.innerHeight) - 0.5;
+        // schedule one frame if not scheduled
+        if(!rafId) rafId = requestAnimationFrame(animate);
+      }
+
+      function animate(){
+        orbs.forEach((orb, i) => {
+          const sx = Math.round(mouseX * strengths[i]);
+          const sy = Math.round(mouseY * strengths[i]);
+          orb.style.transform = `translate3d(${sx}px, ${sy}px, 0)`;
+        });
+        rafId = null;
+      }
+
+      document.addEventListener('mousemove', onMouseMove, { passive: true });
+
+      // optional: keep orbs in place on resize (no reflow/resize of orb sizes)
+      window.addEventListener('resize', () => {
+        // nothing heavy here — we keep orb px sizes fixed; on very small screens media query reduces size
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
