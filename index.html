@@ -13,37 +13,33 @@
     }
     html,body { height: 100%; }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-      background: #05060a; /* solid base so gradients sit on top */
-      color: #fff;
-      line-height:1.5;
-      overflow-x: hidden;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+    body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  background: #0d0f1a; /* brighter deep navy base */
+  color: #fff;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
 
-    /* ---------- Fixed background layer (robust + non-scaling) ---------- */
-    .bg-fixed{
-      position: fixed;
-      inset: 0;                 /* full viewport */
-      pointer-events: none;     /* let clicks pass through */
-      z-index: -2;              /* behind all content */
-      display: block;
-      contain: paint;           /* helps rendering isolation */
-      /* layered radial gradients for soft luxury glow */
-      background-image:
-        radial-gradient(400px 400px at 14% 28%, rgba(124,58,237,0.28), transparent 45%),
-        radial-gradient(480px 480px at 86% 72%, rgba(6,182,212,0.22), transparent 45%),
-        radial-gradient(320px 320px at 52% 48%, rgba(236,72,153,0.20), transparent 45%);
-      background-repeat: no-repeat;
-      background-position: 14% 28%, 86% 72%, 52% 48%;
-      /* fixed so background doesn't move/scale with content/scroll */
-      background-attachment: fixed;
-      background-size: auto;
-      filter: blur(36px);  /* small, cheap blur for softness (not huge) */
-      opacity: 0.9;
-    }
+/* Fixed background layer (brighter + more colorful) */
+.bg-fixed {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  display: block;
+  contain: paint;
+  background-image:
+    radial-gradient(500px 500px at 15% 30%, rgba(124,58,237,0.45), transparent 55%),
+    radial-gradient(600px 600px at 85% 70%, rgba(6,182,212,0.4), transparent 55%),
+    radial-gradient(420px 420px at 50% 50%, rgba(236,72,153,0.35), transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  filter: blur(28px);
+  opacity: 1;
+}
+
 
     /* Orbs: fixed pixel sizes so they DO NOT scale with the page */
     .bg-fixed .orb{
