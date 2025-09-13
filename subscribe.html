@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe Form</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: transparent;
+    }
+    .form-card {
+      max-width: 100%;
+      padding: 25px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#ffffff,#e6f0ff);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    h2 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1a73e8;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #155ab6;
+    }
+    #statusMessage {
+      text-align: center;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    .note {
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <form id="newsForm">
+      <label for="name">Name:</label>
+      <input type="name" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+      <label for="topic">Topic:</label>
+      <select id="topic" name="topic" required>
+        <option value="" disabled selected>Select a topic</option>
+        <option value="NewsAlerts">News alerts</option>
+        <option value="MarketSnapshot">Market snapshot</option>
+        <option value="Custom">Custom</option>
+      </select>
+
+      <label for="details">Further Details:</label>
+      <textarea id="details" name="details" placeholder="Specify more details on selected topic"></textarea>
+
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="statusMessage"></p>
+    <p class="note">Note: After submiting the request further inbstructions will be sent via Email.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById("newsForm");
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const statusMessage = document.getElementById("statusMessage");
+      statusMessage.textContent = "Submitting...";
+      statusMessage.style.color = "#333";
+
+      const email = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const topic = document.getElementById("topic").value;
+      const details = document.getElementById("details").value.trim();
+
+      if(!name || !email || !topic) {
+        statusMessage.textContent = "Please enter name, email and select a topic.";
+        statusMessage.style.color = "red";
+        return;
+      }
+
+      try {
+        const response = await fetch("https://primary-production-5980b.up.railway.app/webhook/a3220c8a-a843-4659-a5af-b3993ba4a637", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, topic, details })
+        });
+
+        if (response.ok) {
+          statusMessage.textContent = "✅ Subscription successful!";
+          statusMessage.style.color = "green";
+          form.reset();
+        } else {
+          throw new Error("Failed to submit");
+        }
+      } catch (err) {
+        statusMessage.textContent = "❌ Error: " + err.message;
+        statusMessage.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
