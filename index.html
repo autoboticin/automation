@@ -191,18 +191,18 @@
     font-weight: 700;
     font-size: 22px;
     display: inline-block;
-    background: linear-gradient(120deg, #7c3aed, #06b6d4); /* subtle two-color gradient */
+    background: linear-gradient(120deg, #7c3aed, #06b6d4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: background 0.5s ease;
+    /* fallback for non-webkit browsers */
+    color: #7c3aed;
   }
 
-  /* Optional subtle hover effect for premium feel */
+  /* subtle hover: slightly brighten text */
   .autobotic-logo:hover {
-    background: linear-gradient(120deg, #06b6d4, #7c3aed);
+    filter: brightness(1.15);
   }
-
-
+    
   </style>
 </head>
 <body>
