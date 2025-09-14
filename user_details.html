@@ -32,7 +32,7 @@
     }
 
     .container {
-      max-width: 700px;
+      max-width: 720px;
       margin: 40px auto;
       padding: 20px;
     }
@@ -73,7 +73,7 @@
 
     form {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
     label {
       font-size: 14px;
@@ -91,9 +91,21 @@
       color: #fff;
       font-size: 14px;
     }
+    select[multiple] {
+      height: 100px;
+    }
     textarea {
       resize: vertical;
       min-height: 70px;
+    }
+
+    .section-title {
+      margin: 24px 0 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #f9fafb;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 6px;
     }
 
     .cta {
@@ -129,16 +141,15 @@
 
       <form action="https://your-n8n-server/webhook/daily-alerts" method="POST">
         <!-- Core Info -->
+        <div class="section-title">Basic Info</div>
         <div>
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required />
         </div>
-
         <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required />
         </div>
-
         <div>
           <label for="alert_time">Preferred Alert Time</label>
           <select id="alert_time" name="alert_time" required>
@@ -148,14 +159,16 @@
         </div>
 
         <!-- Amazon -->
+        <div class="section-title">Amazon Price Alerts</div>
         <div>
-          <label for="amazon_products">Amazon Price Alerts (Product URLs / Keywords)</label>
+          <label for="amazon_products">Product URLs or Keywords</label>
           <textarea id="amazon_products" name="amazon_products" placeholder="e.g. iPhone 15, Sony Headphones"></textarea>
         </div>
 
         <!-- OTT -->
+        <div class="section-title">OTT & Entertainment</div>
         <div>
-          <label for="ott_platforms">OTT Platforms</label>
+          <label for="ott_platforms">OTT Platforms (multi-select)</label>
           <select id="ott_platforms" name="ott_platforms[]" multiple>
             <option>Netflix</option>
             <option>Prime Video</option>
@@ -164,9 +177,8 @@
             <option>SonyLIV</option>
           </select>
         </div>
-
         <div>
-          <label for="ott_genres">Preferred Genres</label>
+          <label for="ott_genres">Preferred Genres (multi-select)</label>
           <select id="ott_genres" name="ott_genres[]" multiple>
             <option>Action</option>
             <option>Comedy</option>
@@ -177,12 +189,13 @@
         </div>
 
         <!-- Content -->
+        <div class="section-title">Content Ideas</div>
         <div>
-          <label for="content_topics">Content Topics</label>
+          <label for="content_topics">Topics of Interest</label>
           <input type="text" id="content_topics" name="content_topics" placeholder="e.g. AI, Finance, Travel" />
         </div>
         <div>
-          <label for="content_type">Content Type</label>
+          <label for="content_type">Content Type (multi-select)</label>
           <select id="content_type" name="content_type[]" multiple>
             <option>Blog</option>
             <option>Instagram</option>
@@ -192,12 +205,13 @@
         </div>
 
         <!-- Events -->
+        <div class="section-title">Local Events</div>
         <div>
-          <label for="location">Location (City)</label>
+          <label for="location">City</label>
           <input type="text" id="location" name="location" placeholder="e.g. Mumbai, Bangalore" />
         </div>
         <div>
-          <label for="event_categories">Event Categories</label>
+          <label for="event_categories">Event Categories (multi-select)</label>
           <select id="event_categories" name="event_categories[]" multiple>
             <option>Music</option>
             <option>Food</option>
@@ -208,8 +222,9 @@
         </div>
 
         <!-- News -->
+        <div class="section-title">Daily News</div>
         <div>
-          <label for="news_topics">News Topics</label>
+          <label for="news_topics">News Topics (multi-select)</label>
           <select id="news_topics" name="news_topics[]" multiple>
             <option>Business</option>
             <option>Technology</option>
@@ -220,12 +235,13 @@
         </div>
 
         <!-- Market -->
+        <div class="section-title">Market Snapshot</div>
         <div>
-          <label for="tickers">Market Snapshot (Tickers)</label>
+          <label for="tickers">Tickers</label>
           <input type="text" id="tickers" name="tickers" placeholder="e.g. NIFTY50, RELIANCE, BTC" />
         </div>
         <div>
-          <label for="market_metrics">Market Metrics</label>
+          <label for="market_metrics">Metrics (multi-select)</label>
           <select id="market_metrics" name="market_metrics[]" multiple>
             <option>Price</option>
             <option>Daily % Change</option>
