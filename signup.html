@@ -75,21 +75,24 @@
 
       <button type="submit">Subscribe</button>
     </form>
+    <p id="statusMessage"></p>
+    <p class="note">Note: Further instructions will be sent via email.</p>
   </div>
 
   <script>
     const form = document.getElementById("newsForm");
+    const statusMessage = document.getElementById("statusMessage");
+
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
-      const statusMessage = document.getElementById("statusMessage");
       statusMessage.textContent = "Submitting...";
       statusMessage.style.color = "#333";
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
 
-      if(!name || !email) {
-        statusMessage.textContent = "Please enter name and email.";
+      if(!name || !email){
+        statusMessage.textContent = "Please enter both name and email.";
         statusMessage.style.color = "red";
         return;
       }
@@ -105,8 +108,7 @@
           statusMessage.textContent = "✅ Subscription successful!";
           statusMessage.style.color = "green";
           form.reset();
-      
-          // Open as popup window (600x400, no toolbar, no menubar)
+
           window.open(
             "user_details.html",
             "popupWindow",
