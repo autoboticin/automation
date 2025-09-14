@@ -99,15 +99,25 @@
       min-height: 70px;
     }
 
-    /* Section Headings (left-aligned, polished) */
+    /* Section Headings (left text + horizontal gradient line) */
     .section-title {
-      margin: 28px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 30px 0 12px;
+    }
+    .section-title span {
       font-size: 18px;
       font-weight: 600;
-      color: #fff;
       background: linear-gradient(90deg, #7c3aed, #06b6d4, #ec4899);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.7), rgba(6,182,212,0.7), rgba(236,72,153,0.7));
     }
 
     .cta {
@@ -145,21 +155,21 @@
       <form action="https://your-n8n-server/webhook/daily-alerts" method="POST">
         
         <!-- Verification -->
-        <div class="section-title">🔑 Verification</div>
+        <div class="section-title"><span>🔑 Verification</span></div>
         <div>
           <label for="user_code">Verification Code</label>
           <input type="text" id="user_code" name="user_code" placeholder="Enter the code from your email" required />
         </div>
 
         <!-- Amazon -->
-        <div class="section-title">🛒 Amazon Price Alerts</div>
+        <div class="section-title"><span>🛒 Amazon Price Alerts</span></div>
         <div>
           <label for="amazon_products">Product URLs or Keywords</label>
           <textarea id="amazon_products" name="amazon_products" placeholder="e.g. iPhone 15, Sony Headphones"></textarea>
         </div>
 
         <!-- OTT -->
-        <div class="section-title">🎬 OTT & Entertainment</div>
+        <div class="section-title"><span>🎬 OTT & Entertainment</span></div>
         <div>
           <label for="ott_platforms">OTT Platforms (multi-select)</label>
           <select id="ott_platforms" name="ott_platforms[]" multiple>
@@ -182,7 +192,7 @@
         </div>
 
         <!-- Content -->
-        <div class="section-title">✍️ Content Ideas</div>
+        <div class="section-title"><span>✍️ Content Ideas</span></div>
         <div>
           <label for="content_topics">Topics of Interest</label>
           <input type="text" id="content_topics" name="content_topics" placeholder="e.g. AI, Finance, Travel" />
@@ -198,7 +208,7 @@
         </div>
 
         <!-- Events -->
-        <div class="section-title">🎟 Local Events</div>
+        <div class="section-title"><span>🎟 Local Events</span></div>
         <div>
           <label for="location">City</label>
           <input type="text" id="location" name="location" placeholder="e.g. Mumbai, Bangalore" />
@@ -215,7 +225,7 @@
         </div>
 
         <!-- News -->
-        <div class="section-title">📰 Daily News</div>
+        <div class="section-title"><span>📰 Daily News</span></div>
         <div>
           <label for="news_topics">News Topics (multi-select)</label>
           <select id="news_topics" name="news_topics[]" multiple>
@@ -228,7 +238,7 @@
         </div>
 
         <!-- Market -->
-        <div class="section-title">📈 Market Snapshot</div>
+        <div class="section-title"><span>📈 Market Snapshot</span></div>
         <div>
           <label for="tickers">Tickers</label>
           <input type="text" id="tickers" name="tickers" placeholder="e.g. NIFTY50, RELIANCE, BTC" />
