@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Autobotic — Smarter Daily Life</title>
-  <meta name="description" content="Autobotic — AI assistant for daily news, routes, and stock alerts.">
+  <meta name="description" content="Autobotic — AI assistant for personalized alerts and content.">
   <style>
     :root{
       --max-width:1200px;
@@ -14,34 +14,32 @@
     html,body { height: 100%; }
     *{box-sizing:border-box;margin:0;padding:0}
     body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: #0d0f1a; /* brighter deep navy base */
-  color: #fff;
-  line-height: 1.5;
-  overflow-x: hidden;
-}
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: #0d0f1a;
+      color: #fff;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-/* Fixed background layer (brighter + more colorful) */
-.bg-fixed {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -2;
-  display: block;
-  contain: paint;
-  background-image:
-    radial-gradient(500px 500px at 15% 30%, rgba(124,58,237,0.45), transparent 55%),
-    radial-gradient(600px 600px at 85% 70%, rgba(6,182,212,0.4), transparent 55%),
-    radial-gradient(420px 420px at 50% 50%, rgba(236,72,153,0.35), transparent 60%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: auto;
-  filter: blur(28px);
-  opacity: 1;
-}
+    /* Fixed background layer */
+    .bg-fixed {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      display: block;
+      contain: paint;
+      background-image:
+        radial-gradient(500px 500px at 15% 30%, rgba(124,58,237,0.45), transparent 55%),
+        radial-gradient(600px 600px at 85% 70%, rgba(6,182,212,0.4), transparent 55%),
+        radial-gradient(420px 420px at 50% 50%, rgba(236,72,153,0.35), transparent 60%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: auto;
+      filter: blur(28px);
+      opacity: 1;
+    }
 
-
-    /* Orbs: fixed pixel sizes so they DO NOT scale with the page */
     .bg-fixed .orb{
       position: absolute;
       border-radius: 50%;
@@ -52,7 +50,6 @@
       transform: translate3d(0,0,0);
       transition: transform 220ms linear;
     }
-    /* orb positions + fixed px dimensions (won't stretch) */
     .orb.one{
       width: 320px;
       height: 320px;
@@ -68,14 +65,12 @@
       background: radial-gradient(circle at 50% 40%, rgba(6,182,212,0.92), rgba(6,182,212,0.05) 55%);
     }
 
-    /* Hide/scale orbs on very small screens so they never cause scrollbars */
     @media (max-width: 640px){
       .orb.one{ width: 220px; height: 220px; left: 20px; top: 50px; filter: blur(40px); }
       .orb.two{ width: 260px; height: 260px; right: 10px; bottom: 40px; filter: blur(40px); }
       .bg-fixed{ filter: blur(30px); }
     }
 
-    /* ---------- Page layout ---------- */
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
 
     header{
@@ -86,20 +81,27 @@
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
     .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-    .logo{ font-weight:700; font-size:20px; color:#fff; }
+    .logo.autobotic-logo{
+      font-weight:700;
+      font-size:22px;
+      display:inline-block;
+      background: linear-gradient(120deg, #7c3aed, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #7c3aed;
+    }
     nav ul{ display:flex; gap:20px; list-style:none }
     nav a{ color:#e6e7eb; text-decoration:none; font-size:15px }
     nav a:hover{ color:#fff; }
 
-    main{ min-height: calc(100vh - 120px); } /* keeps hero visible */
+    main{ min-height: calc(100vh - 120px); }
 
-    /* Hero */
     .hero{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:36px;
       align-items:center;
-      padding:30px 24px;     /* moved up a bit */
+      padding:30px 24px;
       margin: 20px 0;
       background: var(--hero-bg);
       border-radius:18px;
@@ -113,7 +115,6 @@
     .usecases li{ margin-bottom:10px }
     .usecases li::before{ content:"✓"; color:#7c3aed; margin-right:8px }
 
-    /* CTA */
     .cta{
       display:inline-block;
       padding:12px 26px;
@@ -128,21 +129,17 @@
     }
     .cta:hover{ transform: translateY(-2px); box-shadow: 0 10px 34px rgba(124,58,237,0.36); }
     .cta span {
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(90deg, #fff, #f9fafb, #e5e7eb);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-
-  /* fallback text color */
-  color: #fff;
-}
-
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(90deg, #fff, #f9fafb, #e5e7eb);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+      color: #fff;
+    }
     @keyframes shimmer{ 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
-    /* Form card */
     .form-card{
       background: var(--card-bg);
       border-radius:12px;
@@ -167,15 +164,13 @@
       border:0;
       border-radius:8px;
       display:block;
-      resize:none; /* not user-resizable */
+      resize:none;
     }
 
-    /* Features & footer */
     .features{ display:grid; gap:20px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); padding:40px 0 }
     .features .card{ background: rgba(17,24,39,0.85); padding:16px; border-radius:12px; color:#d1d5db }
     footer{ padding:20px 0; color:#9ca3af; text-align:center; }
 
-    /* Accessibility */
     @media (prefers-reduced-motion: reduce){
       .bg-fixed, .orb{ animation:none !important; transition:none !important; }
     }
@@ -184,29 +179,9 @@
       .hero-text h1{ font-size:32px }
       .form-card iframe{ height:320px }
     }
-
-
-  /* Premium subtle gradient logo */
-  .autobotic-logo {
-    font-weight: 700;
-    font-size: 22px;
-    display: inline-block;
-    background: linear-gradient(120deg, #7c3aed, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* fallback for non-webkit browsers */
-    color: #7c3aed;
-  }
-
-  /* subtle hover: slightly brighten text */
-  .autobotic-logo:hover {
-    filter: brightness(1.15);
-  }
-    
   </style>
 </head>
 <body>
-  <!-- fixed background layer (non-scaling, robust) -->
   <div class="bg-fixed" aria-hidden="true">
     <div class="orb one"></div>
     <div class="orb two"></div>
@@ -214,7 +189,7 @@
 
   <header>
     <div class="container nav">
-      <div class="autobotic-logo">Autobotic</div>
+      <div class="logo.autobotic-logo">Autobotic</div>
       <nav>
         <ul>
           <li><a href="#features">Features</a></li>
@@ -229,40 +204,53 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-text">
         <h1 id="hero-title">Smarter Daily Life, Powered by AI.</h1>
-        <p>Autobotic gives you the right info at the right time — so you can focus on what matters.</p>
+        <p>Autobotic delivers the right information at the right time so you can focus on what truly matters.</p>
         <ul class="usecases">
-          <li>Daily personalized news alerts</li>
-          <li>Optimized routes for your work commute</li>
-          <li>Instant stock price notifications</li>
+          <li>Amazon price alerts</li>
+          <li>Netflix / OTT releases</li>
+          <li>Content generation (social, blogs, etc.)</li>
+          <li>Local event alerts</li>
+          <li>Daily news alerts</li>
+          <li>Market snapshot</li>
         </ul>
         <a class="cta" href="#signup"><span>Join Early Access</span></a>
       </div>
 
       <div class="form-card" id="signup" aria-labelledby="signup-title">
         <h2 id="signup-title">Sign up Now</h2>
-        <!-- Lazy-load the form; fixed height so customers can't resize it -->
         <iframe src="signup.html" 
           style="width:100%; max-width:450px; height:280px; border:none; border-radius:12px; 
                  box-shadow:0 6px 20px rgba(0,0,0,0.1);"
           title="Subscribe Form">
-  </iframe>
-
+        </iframe>
       </div>
     </section>
 
     <section id="features" class="features" aria-labelledby="features-title">
       <h2 id="features-title" style="display:none">Features</h2>
       <div class="card">
-        <h3>Personalized Experience</h3>
-        <p>Tailored alerts and suggestions designed around your lifestyle.</p>
+        <h3>Amazon Price Alerts</h3>
+        <p>Stay updated on price drops for products you care about.</p>
       </div>
       <div class="card">
-        <h3>Reliable & Secure</h3>
-        <p>GDPR-compliant privacy with encrypted data handling.</p>
+        <h3>Netflix / OTT Releases</h3>
+        <p>Never miss new shows and movies on your favorite streaming platforms.</p>
       </div>
       <div class="card">
-        <h3>Always Up-to-Date</h3>
-        <p>Realtime updates on news, travel, and financial markets.</p>
+        <h3>Content Generation</h3>
+        <p>Create engaging social posts, blogs, and other content with AI assistance.</p>
+      </div>
+      <div class="card">
+        <h3>Local Event Alerts</h3>
+        <p>Get notified about events happening nearby so you can participate.</p>
+      </div>
+      <div class="card">
+        <h3>Daily News Alerts</h3>
+        <p>Receive personalized news summaries daily for what matters most to you.</p>
+      </div>
+      <div class="card">
+        <h3>Market Snapshot</h3>
+        <p>Keep track of stock prices and market updates in real-time.</p>
       </div>
     </section>
   </main>
@@ -271,21 +259,18 @@
     © 2025 Autobotic, Inc. All rights reserved.
   </footer>
 
-  <!-- light JS for subtle orb mouse-follow; very small, uses rAF to keep it smooth -->
   <script>
     (function(){
       const orbs = document.querySelectorAll('.bg-fixed .orb');
       if(!orbs.length) return;
 
-      // small sensitivity values so movement is subtle and cheap
-      const strengths = [18, 28]; // px multiplier per orb
+      const strengths = [18, 28];
       let mouseX = 0, mouseY = 0;
       let rafId = null;
 
       function onMouseMove(e){
         mouseX = (e.clientX / window.innerWidth) - 0.5;
         mouseY = (e.clientY / window.innerHeight) - 0.5;
-        // schedule one frame if not scheduled
         if(!rafId) rafId = requestAnimationFrame(animate);
       }
 
@@ -299,11 +284,7 @@
       }
 
       document.addEventListener('mousemove', onMouseMove, { passive: true });
-
-      // optional: keep orbs in place on resize (no reflow/resize of orb sizes)
-      window.addEventListener('resize', () => {
-        // nothing heavy here — we keep orb px sizes fixed; on very small screens media query reduces size
-      }, { passive: true });
+      window.addEventListener('resize', () => {}, { passive: true });
     })();
   </script>
 </body>
