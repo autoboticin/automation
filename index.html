@@ -21,7 +21,6 @@
       overflow-x: hidden;
     }
 
-    /* Fixed background layer */
     .bg-fixed {
       position: fixed;
       inset: 0;
@@ -167,8 +166,28 @@
       resize:none;
     }
 
-    .features{ display:grid; gap:20px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); padding:40px 0 }
-    .features .card{ background: rgba(17,24,39,0.85); padding:16px; border-radius:12px; color:#d1d5db }
+    /* Features in one row without scroll */
+    .features {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 40px 0;
+    }
+    .features .card {
+      flex: 1 1 0;
+      min-width: 0;
+      background: rgba(17,24,39,0.85);
+      padding: 16px;
+      border-radius: 12px;
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1280px){ .features .card { font-size: 13px; } }
+    @media (max-width: 1024px){ .features .card { font-size: 12px; padding: 14px; } }
+    @media (max-width: 768px){ .features .card { font-size: 11px; padding: 12px; } }
+
     footer{ padding:20px 0; color:#9ca3af; text-align:center; }
 
     @media (prefers-reduced-motion: reduce){
