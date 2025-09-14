@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Autobotic — Daily Alerts Signup</title>
-  <meta name="description" content="Sign up for daily personalized alerts from Autobotic.">
+  <title>Autobotic — Daily Alerts Preferences</title>
+  <meta name="description" content="Enter your verification code and set up your daily alert preferences.">
   <style>
     body {
       margin: 0;
@@ -67,13 +67,13 @@
     .form-card p {
       text-align: center;
       color: #cbd5e1;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       font-size: 15px;
     }
 
     form {
       display: grid;
-      gap: 18px;
+      gap: 20px;
     }
     label {
       font-size: 14px;
@@ -92,20 +92,31 @@
       font-size: 14px;
     }
     select[multiple] {
-      height: 100px;
+      height: 110px;
     }
     textarea {
       resize: vertical;
       min-height: 70px;
     }
 
+    /* Section Headings */
     .section-title {
-      margin: 24px 0 8px;
-      font-size: 16px;
+      margin: 28px 0 12px;
+      font-size: 18px;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: #f9fafb;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 6px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-title::before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.7), rgba(6,182,212,0.7), rgba(236,72,153,0.7));
     }
 
     .cta {
@@ -119,6 +130,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+      margin-top: 10px;
     }
     .cta:hover {
       transform: translateY(-2px);
@@ -136,20 +148,18 @@
 <body>
   <div class="container">
     <div class="form-card">
-      <h1>Daily Alerts Signup</h1>
-      <p>Subscribe to get personalized daily alerts in your inbox.</p>
+      <h1>Daily Alerts Preferences</h1>
+      <p>Enter the code you received by email and set your preferences.</p>
 
       <form action="https://your-n8n-server/webhook/daily-alerts" method="POST">
-        <!-- Core Info -->
-        <div class="section-title">Basic Info</div>
+        
+        <!-- Verification -->
+        <div class="section-title">🔑 Verification</div>
         <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+          <label for="user_code">Verification Code</label>
+          <input type="text" id="user_code" name="user_code" placeholder="Enter the code from your email" required />
         </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
+
         <div>
           <label for="alert_time">Preferred Alert Time</label>
           <select id="alert_time" name="alert_time" required>
@@ -159,14 +169,14 @@
         </div>
 
         <!-- Amazon -->
-        <div class="section-title">Amazon Price Alerts</div>
+        <div class="section-title">🛒 Amazon Price Alerts</div>
         <div>
           <label for="amazon_products">Product URLs or Keywords</label>
           <textarea id="amazon_products" name="amazon_products" placeholder="e.g. iPhone 15, Sony Headphones"></textarea>
         </div>
 
         <!-- OTT -->
-        <div class="section-title">OTT & Entertainment</div>
+        <div class="section-title">🎬 OTT & Entertainment</div>
         <div>
           <label for="ott_platforms">OTT Platforms (multi-select)</label>
           <select id="ott_platforms" name="ott_platforms[]" multiple>
@@ -189,7 +199,7 @@
         </div>
 
         <!-- Content -->
-        <div class="section-title">Content Ideas</div>
+        <div class="section-title">✍️ Content Ideas</div>
         <div>
           <label for="content_topics">Topics of Interest</label>
           <input type="text" id="content_topics" name="content_topics" placeholder="e.g. AI, Finance, Travel" />
@@ -205,7 +215,7 @@
         </div>
 
         <!-- Events -->
-        <div class="section-title">Local Events</div>
+        <div class="section-title">🎟 Local Events</div>
         <div>
           <label for="location">City</label>
           <input type="text" id="location" name="location" placeholder="e.g. Mumbai, Bangalore" />
@@ -222,7 +232,7 @@
         </div>
 
         <!-- News -->
-        <div class="section-title">Daily News</div>
+        <div class="section-title">📰 Daily News</div>
         <div>
           <label for="news_topics">News Topics (multi-select)</label>
           <select id="news_topics" name="news_topics[]" multiple>
@@ -235,7 +245,7 @@
         </div>
 
         <!-- Market -->
-        <div class="section-title">Market Snapshot</div>
+        <div class="section-title">📈 Market Snapshot</div>
         <div>
           <label for="tickers">Tickers</label>
           <input type="text" id="tickers" name="tickers" placeholder="e.g. NIFTY50, RELIANCE, BTC" />
@@ -250,7 +260,7 @@
         </div>
 
         <!-- Submit -->
-        <button class="cta" type="submit">Subscribe</button>
+        <button class="cta" type="submit">Save Preferences</button>
       </form>
     </div>
     <footer>© 2025 Autobotic, Inc. All rights reserved.</footer>
