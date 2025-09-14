@@ -185,22 +185,24 @@
       .form-card iframe{ height:320px }
     }
 
-    /* Animated rainbow gradient text for the logo */
+
+  /* Premium subtle gradient logo */
   .autobotic-logo {
     font-weight: 700;
-    font-size: 20px;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5, #42f5ef, #f5d142, #ff6ec4);
+    font-size: 22px;
+    display: inline-block;
+    background: linear-gradient(120deg, #7c3aed, #06b6d4); /* subtle two-color gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientShift 5s linear infinite;
-    display: inline-block;
+    transition: background 0.5s ease;
   }
 
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  /* Optional subtle hover effect for premium feel */
+  .autobotic-logo:hover {
+    background: linear-gradient(120deg, #06b6d4, #7c3aed);
   }
+
+
   </style>
 </head>
 <body>
