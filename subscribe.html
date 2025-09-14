@@ -128,8 +128,10 @@
         // Open as popup window (800x600, no toolbar, no menubar)
         window.open(
           "user_details.html",
-          "userDetailsPopup",
-          "width=800,height=600,scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=no,status=no"
+          "popupWindow",
+          "width=600,height=400,top=" + (screen.height/2 - 200) +
+          ",left=" + (screen.width/2 - 300) +
+          ",resizable=no,scrollbars=no,toolbar=no,menubar=no,location=no,status=no"
         );
       } else {
           throw new Error("Failed to submit");
