@@ -184,6 +184,23 @@
       .hero-text h1{ font-size:32px }
       .form-card iframe{ height:320px }
     }
+
+    /* Animated rainbow gradient text for the logo */
+  .autobotic-logo {
+    font-weight: 700;
+    font-size: 20px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5, #42f5ef, #f5d142, #ff6ec4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 5s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   </style>
 </head>
 <body>
@@ -195,7 +212,7 @@
 
   <header>
     <div class="container nav">
-      <div class="logo">Autobotic</div>
+      <div class="autobotic-logo">Autobotic</div>
       <nav>
         <ul>
           <li><a href="#features">Features</a></li>
