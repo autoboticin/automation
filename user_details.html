@@ -91,6 +91,10 @@
         <input type="text" id="name1" name="name">
         <label for="email1">Email</label>
         <input type="email" id="email1" name="email">
+        <label for="topic1">Topic</label>
+        <input type="text" id="topic1" name="topic" value="Amazon Price Alerts" readonly>
+        <label for="focus1">Focus</label>
+        <input type="text" id="focus1" name="focus" placeholder="e.g. Electronics">
         <label for="frequency1">Frequency</label>
         <select id="frequency1" name="frequency">
           <option value="Friday 7am">Every Friday at 7 AM</option>
@@ -106,6 +110,10 @@
         <input type="text" id="name2" name="name">
         <label for="email2">Email</label>
         <input type="email" id="email2" name="email">
+        <label for="topic2">Topic</label>
+        <input type="text" id="topic2" name="topic" value="Netflix / OTT Releases" readonly>
+        <label for="focus2">Focus</label>
+        <input type="text" id="focus2" name="focus" placeholder="e.g. Web Series">
         <label for="frequency2">Frequency</label>
         <select id="frequency2" name="frequency">
           <option value="Friday 7am">Every Friday at 7 AM</option>
@@ -121,6 +129,10 @@
         <input type="text" id="name3" name="name">
         <label for="email3">Email</label>
         <input type="email" id="email3" name="email">
+        <label for="topic3">Topic</label>
+        <input type="text" id="topic3" name="topic" value="Content Generation" readonly>
+        <label for="focus3">Focus</label>
+        <input type="text" id="focus3" name="focus" placeholder="e.g. Blogs">
         <label for="frequency3">Frequency</label>
         <select id="frequency3" name="frequency">
           <option value="Friday 7am">Every Friday at 7 AM</option>
@@ -136,6 +148,10 @@
         <input type="text" id="name4" name="name">
         <label for="email4">Email</label>
         <input type="email" id="email4" name="email">
+        <label for="topic4">Topic</label>
+        <input type="text" id="topic4" name="topic" value="Local Event Alerts" readonly>
+        <label for="focus4">Focus</label>
+        <input type="text" id="focus4" name="focus" placeholder="e.g. Concerts">
         <label for="frequency4">Frequency</label>
         <select id="frequency4" name="frequency">
           <option value="Friday 7am">Every Friday at 7 AM</option>
@@ -151,6 +167,10 @@
         <input type="text" id="name5" name="name">
         <label for="email5">Email</label>
         <input type="email" id="email5" name="email">
+        <label for="topic5">Topic</label>
+        <input type="text" id="topic5" name="topic" value="Daily News Alerts" readonly>
+        <label for="focus5">Focus</label>
+        <input type="text" id="focus5" name="focus" placeholder="e.g. Business">
         <label for="frequency5">Frequency</label>
         <select id="frequency5" name="frequency">
           <option value="Daily 7am">Everyday at 7 AM</option>
@@ -166,6 +186,10 @@
         <input type="text" id="name6" name="name">
         <label for="email6">Email</label>
         <input type="email" id="email6" name="email">
+        <label for="topic6">Topic</label>
+        <input type="text" id="topic6" name="topic" value="Market Snapshot" readonly>
+        <label for="focus6">Focus</label>
+        <input type="text" id="focus6" name="focus" placeholder="e.g. Stocks">
         <label for="frequency6">Frequency</label>
         <select id="frequency6" name="frequency">
           <option value="Sunday 7am">Every Sunday at 7 AM</option>
@@ -176,9 +200,8 @@
   </form>
 
   <script>
-    // Only allow one section open at a time
+    // Only one section open at a time
     const allDetails = document.querySelectorAll("details");
-
     allDetails.forEach((detail) => {
       detail.addEventListener("toggle", () => {
         if (detail.open) {
