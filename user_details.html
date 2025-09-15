@@ -1,262 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Autobotic — Daily Alerts Preferences</title>
-  <meta name="description" content="Enter your verification code and set up your daily alert preferences.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details - Autobotic</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-      background: #0d0f1a;
-      color: #fff;
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    /* Background Glow */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(500px 500px at 15% 30%, rgba(124,58,237,0.45), transparent 55%),
-        radial-gradient(600px 600px at 85% 70%, rgba(6,182,212,0.4), transparent 55%),
-        radial-gradient(420px 420px at 50% 50%, rgba(236,72,153,0.35), transparent 60%);
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      filter: blur(28px);
-      opacity: 1;
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 40px auto;
       padding: 20px;
+      background: #f9fbff;
+      color: #202124;
     }
-
-    .form-card {
-      background: rgba(17, 24, 39, 0.75);
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.4);
-      position: relative;
+    h2 {
+      color: #1a73e8;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    details {
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       overflow: hidden;
     }
-    .form-card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4, #f59e0b, #ec4899);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      z-index: -1;
+    summary {
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f0f6ff, #e6edff);
+      color: #1a73e8;
+      outline: none;
+      list-style: none;
+      transition: background 0.3s, color 0.3s;
     }
-
-    .form-card h1 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      text-align: center;
+    summary::-webkit-details-marker {
+      display: none; /* hide default arrow */
+    }
+    details[open] summary {
+      background: #1a73e8;
       color: #fff;
     }
-    .form-card p {
-      text-align: center;
-      color: #cbd5e1;
-      margin-bottom: 24px;
-      font-size: 15px;
-    }
-
-    form {
-      display: grid;
-      gap: 20px;
+    .content {
+      padding: 15px 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
     }
     label {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 4px;
       display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
     }
-    input, select, textarea {
+    input, select {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: #1f2937;
-      color: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 14px;
     }
-    select[multiple] {
-      height: 110px;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 70px;
-    }
-
-    /* Section Headings (left text + horizontal gradient line) */
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 30px 0 12px;
-    }
-    .section-title span {
-      font-size: 18px;
-      font-weight: 600;
-      background: linear-gradient(90deg, #7c3aed, #06b6d4, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .section-title::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(124,58,237,0.7), rgba(6,182,212,0.7), rgba(236,72,153,0.7));
-    }
-
-    .cta {
-      background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899);
-      border: none;
-      padding: 12px 20px;
-      border-radius: 999px;
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      background: #1a73e8;
       color: #fff;
-      font-weight: 600;
-      font-size: 15px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-      margin-top: 10px;
+      transition: background 0.3s;
     }
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.55);
-    }
-
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
+    button:hover {
+      background: #155ab6;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="form-card">
-      <h1>Daily Alerts Preferences</h1>
-      <p>Enter the code you received by email and set your preferences.</p>
+  <h2>📌 Autobotic User Details</h2>
 
-      <form action="https://your-n8n-server/webhook/daily-alerts" method="POST">
-        
-        <!-- Verification -->
-        <div class="section-title"><span>🔑 Verification</span></div>
-        <div>
-          <label for="user_code">Verification Code</label>
-          <input type="text" id="user_code" name="user_code" placeholder="Enter the code from your email" required />
-        </div>
+  <form id="userForm">
+    <details>
+      <summary>Amazon Price Alerts</summary>
+      <div class="content">
+        <label for="name1">Name</label>
+        <input type="text" id="name1" name="name">
+        <label for="email1">Email</label>
+        <input type="email" id="email1" name="email">
+        <label for="frequency1">Frequency</label>
+        <select id="frequency1" name="frequency">
+          <option value="Friday 7am">Every Friday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
 
-        <!-- Amazon -->
-        <div class="section-title"><span>🛒 Amazon Price Alerts</span></div>
-        <div>
-          <label for="amazon_products">Product URLs or Keywords</label>
-          <textarea id="amazon_products" name="amazon_products" placeholder="e.g. iPhone 15, Sony Headphones"></textarea>
-        </div>
+    <details>
+      <summary>Netflix / OTT Releases</summary>
+      <div class="content">
+        <label for="name2">Name</label>
+        <input type="text" id="name2" name="name">
+        <label for="email2">Email</label>
+        <input type="email" id="email2" name="email">
+        <label for="frequency2">Frequency</label>
+        <select id="frequency2" name="frequency">
+          <option value="Friday 7am">Every Friday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
 
-        <!-- OTT -->
-        <div class="section-title"><span>🎬 OTT & Entertainment</span></div>
-        <div>
-          <label for="ott_platforms">OTT Platforms (multi-select)</label>
-          <select id="ott_platforms" name="ott_platforms[]" multiple>
-            <option>Netflix</option>
-            <option>Prime Video</option>
-            <option>Disney+ Hotstar</option>
-            <option>Zee5</option>
-            <option>SonyLIV</option>
-          </select>
-        </div>
-        <div>
-          <label for="ott_genres">Preferred Genres (multi-select)</label>
-          <select id="ott_genres" name="ott_genres[]" multiple>
-            <option>Action</option>
-            <option>Comedy</option>
-            <option>Drama</option>
-            <option>Thriller</option>
-            <option>Romance</option>
-          </select>
-        </div>
+    <details>
+      <summary>Content Generation</summary>
+      <div class="content">
+        <label for="name3">Name</label>
+        <input type="text" id="name3" name="name">
+        <label for="email3">Email</label>
+        <input type="email" id="email3" name="email">
+        <label for="frequency3">Frequency</label>
+        <select id="frequency3" name="frequency">
+          <option value="Friday 7am">Every Friday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
 
-        <!-- Content -->
-        <div class="section-title"><span>✍️ Content Ideas</span></div>
-        <div>
-          <label for="content_topics">Topics of Interest</label>
-          <input type="text" id="content_topics" name="content_topics" placeholder="e.g. AI, Finance, Travel" />
-        </div>
-        <div>
-          <label for="content_type">Content Type (multi-select)</label>
-          <select id="content_type" name="content_type[]" multiple>
-            <option>Blog</option>
-            <option>Instagram</option>
-            <option>LinkedIn</option>
-            <option>Twitter</option>
-          </select>
-        </div>
+    <details>
+      <summary>Local Event Alerts</summary>
+      <div class="content">
+        <label for="name4">Name</label>
+        <input type="text" id="name4" name="name">
+        <label for="email4">Email</label>
+        <input type="email" id="email4" name="email">
+        <label for="frequency4">Frequency</label>
+        <select id="frequency4" name="frequency">
+          <option value="Friday 7am">Every Friday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
 
-        <!-- Events -->
-        <div class="section-title"><span>🎟 Local Events</span></div>
-        <div>
-          <label for="location">City</label>
-          <input type="text" id="location" name="location" placeholder="e.g. Mumbai, Bangalore" />
-        </div>
-        <div>
-          <label for="event_categories">Event Categories (multi-select)</label>
-          <select id="event_categories" name="event_categories[]" multiple>
-            <option>Music</option>
-            <option>Food</option>
-            <option>Sports</option>
-            <option>Business</option>
-            <option>Tech</option>
-          </select>
-        </div>
+    <details>
+      <summary>Daily News Alerts</summary>
+      <div class="content">
+        <label for="name5">Name</label>
+        <input type="text" id="name5" name="name">
+        <label for="email5">Email</label>
+        <input type="email" id="email5" name="email">
+        <label for="frequency5">Frequency</label>
+        <select id="frequency5" name="frequency">
+          <option value="Daily 7am">Everyday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
 
-        <!-- News -->
-        <div class="section-title"><span>📰 Daily News</span></div>
-        <div>
-          <label for="news_topics">News Topics (multi-select)</label>
-          <select id="news_topics" name="news_topics[]" multiple>
-            <option>Business</option>
-            <option>Technology</option>
-            <option>Politics</option>
-            <option>Sports</option>
-            <option>Entertainment</option>
-          </select>
-        </div>
+    <details>
+      <summary>Market Snapshot</summary>
+      <div class="content">
+        <label for="name6">Name</label>
+        <input type="text" id="name6" name="name">
+        <label for="email6">Email</label>
+        <input type="email" id="email6" name="email">
+        <label for="frequency6">Frequency</label>
+        <select id="frequency6" name="frequency">
+          <option value="Sunday 7am">Every Sunday at 7 AM</option>
+        </select>
+        <button type="submit">Submit</button>
+      </div>
+    </details>
+  </form>
 
-        <!-- Market -->
-        <div class="section-title"><span>📈 Market Snapshot</span></div>
-        <div>
-          <label for="tickers">Tickers</label>
-          <input type="text" id="tickers" name="tickers" placeholder="e.g. NIFTY50, RELIANCE, BTC" />
-        </div>
-        <div>
-          <label for="market_metrics">Metrics (multi-select)</label>
-          <select id="market_metrics" name="market_metrics[]" multiple>
-            <option>Price</option>
-            <option>Daily % Change</option>
-            <option>Top Gainers/Losers</option>
-          </select>
-        </div>
+  <script>
+    // Only allow one section open at a time
+    const allDetails = document.querySelectorAll("details");
 
-        <!-- Submit -->
-        <button class="cta" type="submit">Submit Preferences</button>
-      </form>
-    </div>
-    <footer>© 2025 Autobotic, Inc. All rights reserved.</footer>
-  </div>
+    allDetails.forEach((detail) => {
+      detail.addEventListener("toggle", () => {
+        if (detail.open) {
+          allDetails.forEach((other) => {
+            if (other !== detail) other.open = false;
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
