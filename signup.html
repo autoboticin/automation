@@ -109,13 +109,7 @@
           statusMessage.style.color = "green";
           form.reset();
 
-          window.open(
-            "user_details.html",
-            "popupWindow",
-            "width=600,height=400,top=" + (screen.height/2 - 200) +
-            ",left=" + (screen.width/2 - 300) +
-            ",resizable=no,scrollbars=no,toolbar=no,menubar=no,location=no,status=no"
-          );
+         
         } else {
           throw new Error("Failed to submit");
         }
