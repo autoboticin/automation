@@ -151,6 +151,18 @@
       font-size: 13px;
       color: #9ca3af;
     }
+
+    .accordion-content {
+      overflow: hidden;        /* prevents text/inputs spilling out */
+      width: 100%;             /* keep inside form-card */
+      box-sizing: border-box;  /* include padding in width */
+    }
+    
+    input, select, textarea {
+      max-width: 100%;         /* prevent overflow */
+      box-sizing: border-box;
+    }
+
   </style>
 </head>
 <body>
